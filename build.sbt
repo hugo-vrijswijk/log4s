@@ -2,6 +2,7 @@ import Dependencies._
 import ReleaseTransformations._
 
 import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
+import org.typelevel.sbt.TypelevelScalaJSGitHubPlugin
 
 /* TODO: Attempts to do this with the existing `TaskKey` have failed, but that
  * would be better than doing it using the string. This approach also won't
@@ -59,7 +60,7 @@ def jsOpts = new Def.SettingList(Seq(
 ))
 
 lazy val root: Project = (project in file ("."))
-  .enablePlugins(BasicSettings)
+  .enablePlugins(BasicSettings, TypelevelScalaJSGitHubPlugin)
   .settings(Publish.settings: _*)
   .settings(Release.settings: _*)
   .aggregate(coreJVM, coreJS, testingJVM, testingJS)
